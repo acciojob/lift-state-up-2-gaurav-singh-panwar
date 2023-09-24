@@ -1,11 +1,32 @@
 
-import React from "react";
+import React,{useState} from "react";
 import './../styles/App.css';
 
+const Child = ({inputValue, handleInputChange}) => {
+
+  return(
+    <div className="child">
+      <h2>Child Component</h2>
+      <input type="text" value={inputValue} onChange={handleInputChange} />
+    </div>
+  )
+  
+}
+
 const App = () => {
+  const [inputValue, setInputValue] = useState('');
+
+  function handleInput(e){
+    setInputValue(e.target.value);
+  }
+
   return (
-    <div>
-        {/* Do not remove the main div */}
+    <div id="main">
+        <div className="parent">
+            <h1>Parent Component</h1>
+            <p>{inputValue}</p>
+            <Child inputValue={inputValue} handleInputChange={handleInput} />
+        </div>
     </div>
   )
 }
